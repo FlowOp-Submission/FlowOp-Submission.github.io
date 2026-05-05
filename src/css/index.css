@@ -21,7 +21,7 @@ body {
     width: 95%;
 }
 
-section:nth-of-type(even) {
+section:nth-of-type(odd) {
   background-color:  #f9f9f9;
 }
 
