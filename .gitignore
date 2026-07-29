@@ -25,3 +25,12 @@ dist-ssr
 
 # Local-only reference repo (not part of the build)
 MoCapAnythingV2_repo/node_modules
+
+# Build cache
+.vite/
+
+# Local backups of pre-replacement videos
+_backups/
+
+# Raw source video collection (not part of the build)
+网站视频合集/

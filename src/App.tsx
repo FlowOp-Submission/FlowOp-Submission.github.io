@@ -314,6 +314,7 @@ const NAV_LINKS = [
   { href: "#method", label: "Method" },
   { href: "#deploy", label: "Real Robot" },
   { href: "#animbot", label: "AnimBot" },
+  { href: "#inthewild", label: "In-the-Wild" },
 ];
 
 const StickyNav: FC = () => (
@@ -566,27 +567,29 @@ const ab = (id: string, caption: string): VideoClip => ({
 });
 
 const ANIMBOT_CLIPS: VideoClip[] = [
+  // Newly replaced dataset-display clips first (Sample R · 01 moved after 141_19)
+  ab("06_03", "Sample 06_03"),
+  ab("30_04", "Sample 30_04"),
+  ab("35_31", "Sample 35_31"),
+  ab("54_09", "Sample 54_09"),
+  ab("106_27", "Sample 106_27"),
+  ab("122_49", "Sample 122_49"),
+  ab("139_10", "Sample 139_10"),
+  ab("141_19", "Sample 141_19"),
+  ab("01_R_2", "Sample R · 01"),
+  // Remaining benchmark samples
   ab("0018_XinJiang003", "Xinjiang Dance"),
   ab("0015_BasicKendo001", "Basic Kendo"),
   ab("0005_Stomping001", "Stomping"),
-  ab("01_R_2", "Sample R · 01"),
-  ab("06_03", "Sample 06_03"),
   ab("07_11", "Sample 07_11"),
-  ab("30_04", "Sample 30_04"),
   ab("31_11", "Sample 31_11"),
   ab("32_07", "Sample 32_07"),
   ab("35_29", "Sample 35_29"),
-  ab("35_31", "Sample 35_31"),
   ab("49_01", "Sample 49_01"),
-  ab("54_09", "Sample 54_09"),
   ab("106_16", "Sample 106_16"),
   ab("106_18", "Sample 106_18"),
-  ab("106_27", "Sample 106_27"),
-  ab("122_49", "Sample 122_49"),
   ab("136_27", "Sample 136_27"),
   ab("138_23", "Sample 138_23"),
-  ab("139_10", "Sample 139_10"),
-  ab("141_19", "Sample 141_19"),
 ];
 
 const AnimBotSection: FC = () => (
@@ -602,6 +605,46 @@ const AnimBotSection: FC = () => (
         play; the next clip starts automatically.
       </FriendlyDesc>
       <VideoPlayer clips={ANIMBOT_CLIPS} />
+    </div>
+  </section>
+);
+
+// ---------------------------------------------------------------------------
+// In-the-Wild OOD Gallery — animations never seen during training
+// ---------------------------------------------------------------------------
+
+const itw = (id: string, caption: string): VideoClip => ({
+  src: `inthewild_video/itw_${id}.mp4`,
+  srcRobot: `inthewild_video/itw_${id}_robot.mp4`,
+  caption,
+});
+
+const ITW_CLIPS: VideoClip[] = [
+  itw("01", "SpongeBob SquarePants"),
+  itw("02", "Mickey Mouse"),
+  itw("03", "Ice Age (Sid)"),
+  itw("04", "Crayon Shin-chan"),
+  itw("05", "Shikanoko"),
+  itw("06", "Gojo Satoru (Jujutsu Kaisen)"),
+  itw("07", "Muramura Kohei"),
+  itw("08", "Koga Tomoe (Bunny Girl Senpai)"),
+  itw("09", "Totoro (Walking in Place)"),
+];
+
+const InTheWildSection: FC = () => (
+  <section id="inthewild" className="section">
+    <div className="container has-text-centered">
+      <h2 className="title is-3">3. In-the-Wild OOD Generalization</h2>
+      <FriendlyDesc>
+        These clips are <strong>out-of-distribution (OOD)</strong> test cases:
+        the source animations are <strong>never seen during training</strong>{" "}
+        and are drawn from arbitrary in-the-wild cartoon, anime, and stylized
+        footage. FlowOp generalizes to unseen morphologies and motion styles
+        without any per-clip tuning — the robot trajectories below are produced
+        end-to-end purely from the input video. Click any thumbnail to play;
+        the next clip starts automatically.
+      </FriendlyDesc>
+      <VideoPlayer clips={ITW_CLIPS} />
     </div>
   </section>
 );
@@ -647,6 +690,7 @@ export default function App() {
       <MethodSection />
       <DeploySection />
       <AnimBotSection />
+      <InTheWildSection />
       <AcknowledgementSection />
     </div>
   );
