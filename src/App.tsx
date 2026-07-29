@@ -567,8 +567,7 @@ const ab = (id: string, caption: string): VideoClip => ({
 });
 
 const ANIMBOT_CLIPS: VideoClip[] = [
-  // Newly replaced dataset-display clips first (Sample R · 01 moved after 141_19)
-  ab("06_03", "Sample 06_03"),
+  // Newly replaced dataset-display clips first (Sample R · 01 moved after 141_19; 06_03 moved to end)
   ab("30_04", "Sample 30_04"),
   ab("35_31", "Sample 35_31"),
   ab("54_09", "Sample 54_09"),
@@ -590,6 +589,7 @@ const ANIMBOT_CLIPS: VideoClip[] = [
   ab("106_18", "Sample 106_18"),
   ab("136_27", "Sample 136_27"),
   ab("138_23", "Sample 138_23"),
+  ab("06_03", "Sample 06_03"),
 ];
 
 const AnimBotSection: FC = () => (
